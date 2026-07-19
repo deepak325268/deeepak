@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="hi" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>D.El.Ed Notes - All Subjects (Index)</title>
+<style>
+:root { --bg-color: #f4f7f6; --text-color: #333; --card-bg: #ffffff; --header-bg: #0056b3; --header-text: #ffffff; --sidebar-bg: #e9ecef; --border-color: #ddd; --accent-color: #007bff; }
+[data-theme="dark"] { --bg-color: #121212; --text-color: #e0e0e0; --card-bg: #1e1e1e; --header-bg: #1f1f1f; --header-text: #bb86fc; --sidebar-bg: #2c2c2c; --border-color: #444; --accent-color: #bb86fc; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; transition: 0.3s; }
+header { background-color: var(--header-bg); color: var(--header-text); padding: 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+header h1 { font-size: 1.3rem; }
+#themeToggle { background: none; border: none; color: var(--header-text); font-size: 1.5rem; cursor: pointer; }
+.container { max-width: 900px; margin: 0 auto; padding: 30px 20px; }
+.subtitle { text-align: center; color: var(--text-color); opacity: 0.75; margin-bottom: 25px; font-size: 0.95rem; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; align-items: start; }
+.card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; padding: 20px; text-decoration: none; color: var(--text-color); display: flex; align-items: center; gap: 14px; box-shadow: 0 2px 5px rgba(0,0,0,0.06); transition: 0.2s; }
+.card:hover { transform: translateY(-3px); box-shadow: 0 6px 14px rgba(0,0,0,0.15); border-color: var(--accent-color); }
+.badge { background: var(--accent-color); color: #fff; min-width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.95rem; flex-shrink: 0; }
+.card-text { flex: 1; min-width: 0; }
+.card-title { font-weight: 600; font-size: 1rem; margin-bottom: 3px; }
+.card-sub { font-size: 0.8rem; opacity: 0.7; }
+footer { text-align: center; padding: 25px; font-size: 0.8rem; opacity: 0.6; }
+@keyframes marqueeScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+.card-exam { display: none; }
+#splash { position: fixed; inset: 0; background: linear-gradient(135deg, #0f172a, #1e3a8a 45%, #0056b3 100%); background-size: 200% 200%; animation: splashGradient 6s ease infinite; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; transition: opacity 0.7s ease, visibility 0.7s ease; overflow: hidden; }
+#splash.hide { opacity: 0; visibility: hidden; }
+#splash .splash-logo { width: 78px; height: 78px; border-radius: 50%; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.25); display: flex; align-items: center; justify-content: center; font-size: 2.1rem; margin-bottom: 22px; box-shadow: 0 0 0 0 rgba(255,255,255,0.25); animation: splashPulse 2.4s ease-out infinite; }
+#splash .splash-eyebrow { color: rgba(255,255,255,0.55); font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 10px; }
+#splash .splash-text { color: #fff; font-family: 'Courier New', monospace; font-size: 1.6rem; font-weight: 900; letter-spacing: 1px; display: flex; align-items: center; text-shadow: 0 0 18px rgba(255,255,255,0.35); }
+#splash .splash-cursor { display: inline-block; width: 3px; height: 1.4rem; background: #fff; margin-left: 5px; animation: blinkCursor 0.8s step-end infinite; }
+#splash .splash-bar { width: 140px; height: 2px; background: rgba(255,255,255,0.15); margin-top: 26px; border-radius: 2px; overflow: hidden; }
+#splash .splash-bar-fill { width: 0%; height: 100%; background: linear-gradient(90deg, #60a5fa, #ffffff); animation: splashLoad 2.4s ease forwards; }
+@keyframes splashGradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+@keyframes splashPulse { 0% { box-shadow: 0 0 0 0 rgba(255,255,255,0.25); } 70% { box-shadow: 0 0 0 20px rgba(255,255,255,0); } 100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); } }
+@keyframes blinkCursor { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+@keyframes splashLoad { 0% { width: 0%; } 100% { width: 100%; } }
+@media (max-width: 480px) {
+  header h1 { font-size: 1.05rem; }
+  .grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div id="splash">
+<div class="splash-logo">📚</div>
+<div class="splash-eyebrow">D.El.Ed Notes</div>
+<div class="splash-text"><span id="splashTyped"></span><span class="splash-cursor"></span></div>
+<div class="splash-bar"><div class="splash-bar-fill"></div></div>
+</div>
+<header>
+<h1>📚 D.El.Ed Notes - All Subjects</h1>
+<button id="themeToggle" title="Dark/Light Mode">🌙</button>
+</header>
+
+<div class="container">
+<p class="subtitle">Click on a subject below to open its notes</p>
+
+<div class="grid">
+<a class="card" href="S1.html">
+<div class="badge">S1</div>
+<div class="card-text">
+<div class="card-title">समकालीन भारतीय समाज में शिक्षा</div>
+<div class="card-sub">Contemporary India and Education</div>
+</div>
+</a>
+
+<a class="card" href="S2.html">
+<div class="badge">S2</div>
+<div class="card-text">
+<div class="card-title">संज्ञान सीखना और बाल विकास</div>
+<div class="card-sub">Cognition Learning and Development</div>
+</div>
+</a>
+
+<a class="card" href="S4.html">
+<div class="badge">S4</div>
+<div class="card-text">
+<div class="card-title">स्वयं की समझ</div>
+<div class="card-sub">Understanding Towards Yourself</div>
+</div>
+</a>
+
+<a class="card" href="S5.html">
+<div class="badge">S5</div>
+<div class="card-text">
+<div class="card-title">विद्यालय में स्वास्थ्य योग एवं शारीरिक शिक्षा</div>
+<div class="card-sub">Health, Yoga and Body Education</div>
+</div>
+</a>
+
+<a class="card" href="S6.html">
+<div class="badge">S6</div>
+<div class="card-text">
+<div class="card-title">अंग्रेजी का शिक्षणशास्त्र (प्राथमिक स्तर)</div>
+<div class="card-sub">Pedagogy of English (Primary Level)</div>
+</div>
+</a>
+
+<a class="card" href="S7.html">
+<div class="badge">S7</div>
+<div class="card-text">
+<div class="card-title">गणित का शिक्षणशास्त्र - 2 (प्राथमिक स्तर)</div>
+<div class="card-sub">Pedagogy of Maths at Primary Level</div>
+</div>
+</a>
+
+<a class="card" href="S8.html">
+<div class="badge">S8</div>
+<div class="card-text">
+<div class="card-title">हिंदी का शिक्षणशास्त्र - 2 (प्राथमिक स्तर)</div>
+<div class="card-sub">Pedagogy of Hindi at Primary Level</div>
+</div>
+</a>
+
+<div>
+<div style="overflow:hidden; white-space:nowrap; margin-bottom:6px;">
+<div style="display:inline-block; padding-left:100%; color:#e53935; font-size:0.72rem; font-weight:600; animation: marqueeScroll 12s linear infinite;">⚠️ यह S9 का नोट उन विद्यार्थियों के लिए है जिनका S9 विषय सामाजिक विज्ञान (Social Science) है।</div>
+</div>
+<a class="card" href="S9.html">
+<div class="badge">S9</div>
+<div class="card-text">
+<div class="card-title">सामाजिक विज्ञान का शिक्षणशास्त्र (उच्च-प्राथमिक स्तर)</div>
+<div class="card-sub">Pedagogy of Social Science</div>
+</div>
+</a>
+</div>
+</div>
+</div>
+
+<script>
+const splashText = "Crafted by Deepak";
+const splashEl = document.getElementById('splashTyped');
+const splash = document.getElementById('splash');
+let i = 0;
+function typeSplash() {
+  if (i < splashText.length) {
+    splashEl.textContent += splashText.charAt(i);
+    i++;
+    setTimeout(typeSplash, 90);
+  } else {
+    setTimeout(() => { splash.classList.add('hide'); }, 600);
+  }
+}
+typeSplash();
+
+const themeToggle = document.getElementById('themeToggle');
+const html = document.documentElement;
+function applyTheme(t) {
+  html.setAttribute('data-theme', t);
+  themeToggle.textContent = t === 'dark' ? '☀️' : '🌙';
+}
+const saved = localStorage.getItem('deled-theme') || 'light';
+applyTheme(saved);
+themeToggle.addEventListener('click', () => {
+  const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  applyTheme(next);
+  localStorage.setItem('deled-theme', next);
+});
+</script>
+</body>
+</html>
