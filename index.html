@@ -26,21 +26,9 @@ header h1 { font-size: 1.15rem; font-weight: 700; }
 .card-text { flex: 1; min-width: 0; }
 .card-title { font-weight: 700; font-size: 1.08rem; margin-bottom: 5px; line-height: 1.35; overflow-wrap: break-word; word-break: break-word; }
 .card-sub { font-size: 0.85rem; opacity: 0.65; font-weight: 500; overflow-wrap: break-word; word-break: break-word; }
-footer { text-align: center; padding: 25px; font-size: 0.8rem; opacity: 0.6; }
+footer { text-align: center; padding: 25px; font-size: 0.8rem; color: var(--text-color); opacity: 0.85; font-weight: 600; }
 @keyframes marqueeScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 .card-exam { display: none; }
-#splash { position: fixed; inset: 0; background: linear-gradient(135deg, #0f172a, #1e3a8a 45%, #0056b3 100%); background-size: 200% 200%; animation: splashGradient 6s ease infinite; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; transition: opacity 0.7s ease, visibility 0.7s ease; overflow: hidden; }
-#splash.hide { opacity: 0; visibility: hidden; }
-#splash .splash-logo { width: 78px; height: 78px; border-radius: 50%; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.25); display: flex; align-items: center; justify-content: center; font-size: 2.1rem; margin-bottom: 22px; box-shadow: 0 0 0 0 rgba(255,255,255,0.25); animation: splashPulse 2.4s ease-out infinite; }
-#splash .splash-eyebrow { color: rgba(255,255,255,0.55); font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 10px; }
-#splash .splash-text { color: #fff; font-family: 'Courier New', monospace; font-size: 1.6rem; font-weight: 900; letter-spacing: 1px; display: flex; align-items: center; text-shadow: 0 0 18px rgba(255,255,255,0.35); }
-#splash .splash-cursor { display: inline-block; width: 3px; height: 1.4rem; background: #fff; margin-left: 5px; animation: blinkCursor 0.8s step-end infinite; }
-#splash .splash-bar { width: 140px; height: 2px; background: rgba(255,255,255,0.15); margin-top: 26px; border-radius: 2px; overflow: hidden; }
-#splash .splash-bar-fill { width: 0%; height: 100%; background: linear-gradient(90deg, #60a5fa, #ffffff); animation: splashLoad 2.4s ease forwards; }
-@keyframes splashGradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-@keyframes splashPulse { 0% { box-shadow: 0 0 0 0 rgba(255,255,255,0.25); } 70% { box-shadow: 0 0 0 20px rgba(255,255,255,0); } 100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); } }
-@keyframes blinkCursor { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-@keyframes splashLoad { 0% { width: 0%; } 100% { width: 100%; } }
 @media (max-width: 480px) {
   header h1 { font-size: 1.05rem; }
   .grid { grid-template-columns: minmax(0, 1fr); }
@@ -49,12 +37,6 @@ footer { text-align: center; padding: 25px; font-size: 0.8rem; opacity: 0.6; }
 </head>
 <body>
 
-<div id="splash">
-<div class="splash-logo">📚</div>
-<div class="splash-eyebrow">D.El.Ed Notes</div>
-<div class="splash-text"><span id="splashTyped"></span><span class="splash-cursor"></span></div>
-<div class="splash-bar"><div class="splash-bar-fill"></div></div>
-</div>
 <header>
 <h1>📚 D.El.Ed Notes - All Subjects</h1>
 <button id="themeToggle" title="Dark/Light Mode">🌙</button>
@@ -138,21 +120,6 @@ footer { text-align: center; padding: 25px; font-size: 0.8rem; opacity: 0.6; }
 <footer>Crafted by Deepak</footer>
 
 <script>
-const splashText = "Crafted by Deepak";
-const splashEl = document.getElementById('splashTyped');
-const splash = document.getElementById('splash');
-let i = 0;
-function typeSplash() {
-  if (i < splashText.length) {
-    splashEl.textContent += splashText.charAt(i);
-    i++;
-    setTimeout(typeSplash, 90);
-  } else {
-    setTimeout(() => { splash.classList.add('hide'); }, 600);
-  }
-}
-typeSplash();
-
 const themeToggle = document.getElementById('themeToggle');
 const html = document.documentElement;
 function applyTheme(t) {
