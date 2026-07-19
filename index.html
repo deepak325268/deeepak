@@ -9,7 +9,8 @@
 :root { --bg-color: #f4f7f6; --text-color: #333; --card-bg: #ffffff; --header-bg: #0056b3; --header-text: #ffffff; --sidebar-bg: #e9ecef; --border-color: #ddd; --accent-color: #007bff; }
 [data-theme="dark"] { --bg-color: #121212; --text-color: #e0e0e0; --card-bg: #1e1e1e; --header-bg: #1f1f1f; --header-text: #bb86fc; --sidebar-bg: #2c2c2c; --border-color: #444; --accent-color: #bb86fc; }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; transition: 0.3s; }
+html { overflow-x: hidden; max-width: 100%; }
+body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; transition: 0.3s; overflow-x: hidden; max-width: 100%; }
 header { background-color: var(--header-bg); color: var(--header-text); padding: 18px 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 8px rgba(0,0,0,0.25); }
 header h1 { font-size: 1.15rem; font-weight: 700; }
 #themeToggle { background: none; border: none; color: var(--header-text); font-size: 1.6rem; cursor: pointer; -webkit-tap-highlight-color: transparent; padding: 4px 8px; border-radius: 8px; transition: transform 0.15s; }
@@ -23,8 +24,8 @@ header h1 { font-size: 1.15rem; font-weight: 700; }
 .card:focus-visible { outline: 2px solid var(--accent-color); outline-offset: 2px; }
 .badge { background: var(--accent-color); color: #fff; min-width: 46px; height: 46px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1rem; flex-shrink: 0; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
 .card-text { flex: 1; min-width: 0; }
-.card-title { font-weight: 700; font-size: 1.08rem; margin-bottom: 5px; line-height: 1.35; }
-.card-sub { font-size: 0.85rem; opacity: 0.65; font-weight: 500; }
+.card-title { font-weight: 700; font-size: 1.08rem; margin-bottom: 5px; line-height: 1.35; overflow-wrap: break-word; word-break: break-word; }
+.card-sub { font-size: 0.85rem; opacity: 0.65; font-weight: 500; overflow-wrap: break-word; word-break: break-word; }
 footer { text-align: center; padding: 25px; font-size: 0.8rem; opacity: 0.6; }
 @keyframes marqueeScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 .card-exam { display: none; }
