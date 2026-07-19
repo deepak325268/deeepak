@@ -68,7 +68,7 @@
       'font-family:\'Segoe UI\',Tahoma,Geneva,Verdana,sans-serif;box-shadow:0 10px 40px rgba(0,0,0,0.35);">' +
       '<div style="font-size:2rem;margin-bottom:10px;">👋</div>' +
       '<h2 style="margin-bottom:8px;font-size:1.2rem;color:var(--header-bg,#0056b3);">WRITE YOUR NAME</h2>' +
-      '<p style="font-size:0.9rem;opacity:0.75;margin-bottom:16px;">💙 ❤️ 💛</p>' +
+      '<p style="font-size:0.9rem;opacity:0.75;margin-bottom:16px;">😊</p>' +
       '<input id="visitorNameInput" type="text" placeholder="Write your name here" maxlength="40" autocomplete="off" ' +
       'style="width:100%;padding:12px;border:1px solid var(--border-color,#ccc);border-radius:8px;font-size:1rem;' +
       'margin-bottom:12px;background:var(--bg-color,#fff);color:var(--text-color,#333);box-sizing:border-box;" />' +
