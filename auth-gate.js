@@ -68,11 +68,11 @@
       'font-family:\'Segoe UI\',Tahoma,Geneva,Verdana,sans-serif;box-shadow:0 10px 40px rgba(0,0,0,0.35);">' +
       '<div style="font-size:2rem;margin-bottom:10px;">👋</div>' +
       '<h2 style="margin-bottom:8px;font-size:1.2rem;color:var(--header-bg,#0056b3);">Apna naam likhein</h2>' +
-      '<p style="font-size:0.9rem;opacity:0.75;margin-bottom:16px;">Aage badhne ke liye naam daalein (sirf ek baar poochha jaayega)</p>' +
-      '<input id="visitorNameInput" type="text" placeholder="Yahan apna naam likhein" maxlength="40" autocomplete="off" ' +
+      '<p style="font-size:0.9rem;opacity:0.75;margin-bottom:16px;">NAME</p>' +
+      '<input id="visitorNameInput" type="text" placeholder="Write your name here" maxlength="40" autocomplete="off" ' +
       'style="width:100%;padding:12px;border:1px solid var(--border-color,#ccc);border-radius:8px;font-size:1rem;' +
       'margin-bottom:12px;background:var(--bg-color,#fff);color:var(--text-color,#333);box-sizing:border-box;" />' +
-      '<div id="nameGateError" style="color:#e53935;font-size:0.8rem;margin-bottom:10px;display:none;">Kripya apna naam likhein</div>' +
+      '<div id="nameGateError" style="color:#e53935;font-size:0.8rem;margin-bottom:10px;display:none;">Write your name</div>' +
       '<button id="submitNameBtn" style="width:100%;padding:12px;background:var(--accent-color,#007bff);color:#fff;' +
       'border:none;border-radius:8px;font-size:1rem;font-weight:700;cursor:pointer;">Continue</button>' +
       "</div>";
