@@ -14,10 +14,20 @@
 // SETUP: replace WORKER_URL below with your deployed Cloudflare Worker URL.
 
 (function () {
-  const WORKER_URL = "https://telegram-notify-workerjs.ctetone31.workers.dev"; // <-- REPLACE THIS
+  const WORKER_URL = "https://telegram-notify-workerjs.ctetone31.workers.dev";
 
   const NAME_KEY = "deled_visitor_name";
   const SESSION_KEY = "deled_session_notified";
+
+  const pageLoadTime = Date.now();
+  let visitorName = localStorage.getItem(NAME_KEY);
+
+  function formatDuration(ms) {
+    const totalSec = Math.max(0, Math.round(ms / 1000));
+    const min = Math.floor(totalSec / 60);
+    const sec = totalSec % 60;
+    return min > 0 ? min + " min " + sec + " sec" : sec + " sec";
+  }
 
   function currentPageName() {
     const path = window.location.pathname.split("/").pop();
@@ -36,24 +46,61 @@
     }
   }
 
-  function sendEvent(type, name) {
+  function postEvent(payload, useBeacon) {
     if (!WORKER_URL || WORKER_URL.indexOf("YOUR-WORKER-NAME") !== -1) {
       console.warn("auth-gate.js: WORKER_URL not configured yet.");
       return;
     }
-    fetch(WORKER_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
+    const body = JSON.stringify(payload);
+    if (useBeacon && navigator.sendBeacon) {
+      try {
+        navigator.sendBeacon(WORKER_URL, new Blob([body], { type: "application/json" }));
+        return;
+      } catch (e) {
+        /* fall through to fetch below */
+      }
+    }
+    try {
+      fetch(WORKER_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: body,
+        keepalive: !!useBeacon,
+      }).catch(function () {
+        /* fail silently - never block the visitor over a network hiccup */
+      });
+    } catch (e) {
+      /* ignore */
+    }
+  }
+
+  function sendEvent(type, name) {
+    postEvent(
+      {
         type: type,
         name: name,
         page: currentPageName(),
         time: currentTimeIST(),
-      }),
-    }).catch(function () {
-      /* fail silently - never block the visitor over a network hiccup */
-    });
+      },
+      false
+    );
   }
+
+  function sendLeaveEvent() {
+    if (!visitorName) return; // name never captured this load - nothing useful to report
+    postEvent(
+      {
+        type: "page_leave",
+        name: visitorName,
+        page: currentPageName(),
+        time: currentTimeIST(),
+        duration: formatDuration(Date.now() - pageLoadTime),
+      },
+      true
+    );
+  }
+
+  window.addEventListener("pagehide", sendLeaveEvent);
 
   function showNameGate() {
     const overlay = document.createElement("div");
@@ -94,6 +141,7 @@
       }
       localStorage.setItem(NAME_KEY, name);
       sessionStorage.setItem(SESSION_KEY, "1");
+      visitorName = name;
       sendEvent("naya_visitor", name);
       document.body.style.overflow = prevOverflow;
       overlay.remove();
@@ -110,12 +158,10 @@
   }
 
   // ---- main logic ----
-  const savedName = localStorage.getItem(NAME_KEY);
-
-  if (!savedName) {
+  if (!visitorName) {
     showNameGate();
   } else if (!sessionStorage.getItem(SESSION_KEY)) {
     sessionStorage.setItem(SESSION_KEY, "1");
-    sendEvent("site_open", savedName);
+    sendEvent("site_open", visitorName);
   }
 })();
