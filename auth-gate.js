@@ -86,8 +86,12 @@
     );
   }
 
+  let leaveSent = false;
+
   function sendLeaveEvent() {
+    if (leaveSent) return; // only report once per page load
     if (!visitorName) return; // name never captured this load - nothing useful to report
+    leaveSent = true;
     postEvent(
       {
         type: "page_leave",
@@ -101,6 +105,9 @@
   }
 
   window.addEventListener("pagehide", sendLeaveEvent);
+  document.addEventListener("visibilitychange", function () {
+    if (document.visibilityState === "hidden") sendLeaveEvent();
+  });
 
   function showNameGate() {
     const overlay = document.createElement("div");
