@@ -2,7 +2,7 @@
 <html lang="hi" data-theme="light">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0056b3">
 <title>D.El.Ed Notes - All Subjects (Index)</title>
 <style>
@@ -18,7 +18,7 @@ header h1 { font-size: 1.15rem; font-weight: 700; }
 .container { max-width: 900px; margin: 0 auto; padding: 26px 18px 40px; }
 .subtitle { text-align: center; color: var(--text-color); opacity: 0.7; margin-bottom: 24px; font-size: 0.95rem; font-weight: 500; }
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; align-items: start; }
-.card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 14px; padding: 20px 18px; text-decoration: none; color: var(--text-color); display: flex; align-items: center; gap: 16px; box-shadow: 0 3px 10px rgba(0,0,0,0.07); transition: 0.2s; -webkit-tap-highlight-color: transparent; }
+.card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 14px; padding: 20px 18px; text-decoration: none; color: var(--text-color); display: flex; align-items: center; gap: 16px; min-width: 0; box-shadow: 0 3px 10px rgba(0,0,0,0.07); transition: 0.2s; -webkit-tap-highlight-color: transparent; }
 .card:hover { transform: translateY(-3px); box-shadow: 0 8px 18px rgba(0,0,0,0.15); border-color: var(--accent-color); }
 .card:active { transform: scale(0.98); box-shadow: 0 2px 6px rgba(0,0,0,0.1); border-color: var(--accent-color); }
 .card:focus-visible { outline: 2px solid var(--accent-color); outline-offset: 2px; }
@@ -43,7 +43,7 @@ footer { text-align: center; padding: 25px; font-size: 0.8rem; opacity: 0.6; }
 @keyframes splashLoad { 0% { width: 0%; } 100% { width: 100%; } }
 @media (max-width: 480px) {
   header h1 { font-size: 1.05rem; }
-  .grid { grid-template-columns: 1fr; }
+  .grid { grid-template-columns: minmax(0, 1fr); }
 }
 </style>
 </head>
