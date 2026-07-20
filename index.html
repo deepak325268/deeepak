@@ -12,9 +12,13 @@
 html { max-width: 100%; }
 body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; transition: 0.3s; max-width: 100%; }
 .sticky-top { position: sticky; top: 0; z-index: 1000; background-color: var(--bg-color); }
-header { background-color: var(--header-bg); color: var(--header-text); padding: 18px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); }
-header h1 { font-size: 1.15rem; font-weight: 700; }
-#themeToggle { background: none; border: none; color: var(--header-text); font-size: 1.6rem; cursor: pointer; -webkit-tap-highlight-color: transparent; padding: 4px 8px; border-radius: 8px; transition: transform 0.15s; }
+header { background: linear-gradient(135deg, var(--header-bg), #003d82); color: var(--header-text); padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 14px rgba(0,0,0,0.3); position: relative; overflow: hidden; }
+[data-theme="dark"] header { background: linear-gradient(135deg, var(--header-bg), #0d0d0d); }
+header::before { content: ''; position: absolute; top: -50%; right: -10%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(255,255,255,0.08), transparent 70%); border-radius: 50%; pointer-events: none; }
+header h1 { font-size: 1.2rem; font-weight: 800; letter-spacing: 0.3px; display: flex; align-items: center; gap: 10px; text-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+header h1 .book-icon { font-size: 1.4rem; filter: drop-shadow(0 2px 3px rgba(0,0,0,0.25)); }
+#themeToggle { background: rgba(255,255,255,0.12); border: none; color: var(--header-text); font-size: 1.4rem; cursor: pointer; -webkit-tap-highlight-color: transparent; padding: 8px 12px; border-radius: 12px; transition: 0.2s; backdrop-filter: blur(4px); }
+#themeToggle:hover { background: rgba(255,255,255,0.2); }
 #themeToggle:active { transform: scale(0.9); }
 .container { max-width: 900px; margin: 0 auto; padding: 26px 18px 40px; overflow-x: hidden; }
 .subtitle { text-align: center; padding: 14px 18px 12px; font-size: 1rem; font-weight: 700; max-width: 900px; margin: 0 auto; box-shadow: 0 4px 8px -4px rgba(0,0,0,0.08); display: flex; align-items: center; justify-content: center; gap: 8px; }
@@ -44,7 +48,7 @@ footer { text-align: center; padding: 25px; font-size: 0.8rem; color: var(--text
 
 <div class="sticky-top">
 <header>
-<h1>📚 D.El.Ed Notes - All Subjects</h1>
+<h1><span class="book-icon">📚</span> D.El.Ed Notes - All Subjects</h1>
 <button id="themeToggle" title="Dark/Light Mode">🌙</button>
 </header>
 <p class="subtitle"><span class="subtitle-text">Click on a subject below to open its notes</span> <span class="subtitle-arrow">👇</span></p>
