@@ -9,14 +9,19 @@
 :root { --bg-color: #f4f7f6; --text-color: #333; --card-bg: #ffffff; --header-bg: #0056b3; --header-text: #ffffff; --sidebar-bg: #e9ecef; --border-color: #ddd; --accent-color: #007bff; }
 [data-theme="dark"] { --bg-color: #121212; --text-color: #e0e0e0; --card-bg: #1e1e1e; --header-bg: #1f1f1f; --header-text: #bb86fc; --sidebar-bg: #2c2c2c; --border-color: #444; --accent-color: #bb86fc; }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html { overflow-x: hidden; max-width: 100%; }
-body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; transition: 0.3s; overflow-x: hidden; max-width: 100%; }
-header { background-color: var(--header-bg); color: var(--header-text); padding: 18px 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 8px rgba(0,0,0,0.25); }
+html { max-width: 100%; }
+body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; transition: 0.3s; max-width: 100%; }
+.sticky-top { position: sticky; top: 0; z-index: 1000; background-color: var(--bg-color); }
+header { background-color: var(--header-bg); color: var(--header-text); padding: 18px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.25); }
 header h1 { font-size: 1.15rem; font-weight: 700; }
 #themeToggle { background: none; border: none; color: var(--header-text); font-size: 1.6rem; cursor: pointer; -webkit-tap-highlight-color: transparent; padding: 4px 8px; border-radius: 8px; transition: transform 0.15s; }
 #themeToggle:active { transform: scale(0.9); }
-.container { max-width: 900px; margin: 0 auto; padding: 26px 18px 40px; }
-.subtitle { text-align: center; color: var(--text-color); opacity: 0.7; margin-bottom: 24px; font-size: 0.95rem; font-weight: 500; }
+.container { max-width: 900px; margin: 0 auto; padding: 26px 18px 40px; overflow-x: hidden; }
+.subtitle { text-align: center; padding: 14px 18px 12px; font-size: 1rem; font-weight: 700; max-width: 900px; margin: 0 auto; box-shadow: 0 4px 8px -4px rgba(0,0,0,0.08); display: flex; align-items: center; justify-content: center; gap: 8px; }
+.subtitle-text { background: linear-gradient(90deg, var(--accent-color), #ff6b6b, #ffd93d, var(--accent-color)); background-size: 300% auto; -webkit-background-clip: text; background-clip: text; color: transparent; animation: shimmer 4s linear infinite; }
+.subtitle-arrow { display: inline-block; animation: bounce 1.4s ease-in-out infinite; font-size: 1.1rem; }
+@keyframes shimmer { 0% { background-position: 0% center; } 100% { background-position: 300% center; } }
+@keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; align-items: start; }
 .card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 14px; padding: 20px 18px; text-decoration: none; color: var(--text-color); display: flex; align-items: center; gap: 16px; min-width: 0; box-shadow: 0 3px 10px rgba(0,0,0,0.07); transition: 0.2s; -webkit-tap-highlight-color: transparent; }
 .card:hover { transform: translateY(-3px); box-shadow: 0 8px 18px rgba(0,0,0,0.15); border-color: var(--accent-color); }
@@ -37,14 +42,15 @@ footer { text-align: center; padding: 25px; font-size: 0.8rem; color: var(--text
 </head>
 <body>
 
+<div class="sticky-top">
 <header>
 <h1>📚 D.El.Ed Notes - All Subjects</h1>
 <button id="themeToggle" title="Dark/Light Mode">🌙</button>
 </header>
+<p class="subtitle"><span class="subtitle-text">Click on a subject below to open its notes</span> <span class="subtitle-arrow">👇</span></p>
+</div>
 
 <div class="container">
-<p class="subtitle">Click on a subject below to open its notes</p>
-
 <div class="grid">
 <a class="card" href="S1.html">
 <div class="badge">S1</div>
