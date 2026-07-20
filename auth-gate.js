@@ -18,6 +18,26 @@
 
   const NAME_KEY = "deled_visitor_name";
   const SESSION_KEY = "deled_session_notified";
+  const OWNER_KEY = "deled_owner_device";
+
+  // Activate "owner mode" once by opening any page with ?owner=1 in the URL.
+  // After that, this browser/device is remembered and will never send
+  // Telegram notifications again - even after clearing the URL param.
+  try {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("owner") === "1") {
+      localStorage.setItem(OWNER_KEY, "1");
+    }
+  } catch (e) {
+    /* ignore */
+  }
+  const isOwnerDevice = localStorage.getItem(OWNER_KEY) === "1";
+
+  // Any visitor who enters this exact name never triggers a Telegram notification.
+  const OWNER_NAME = "62027";
+  function isOwnerName(name) {
+    return (name || "").toString().trim().toLowerCase() === OWNER_NAME;
+  }
 
   const pageLoadTime = Date.now();
   let visitorName = localStorage.getItem(NAME_KEY);
@@ -47,6 +67,8 @@
   }
 
   function postEvent(payload, useBeacon) {
+    if (isOwnerDevice) return; // owner device - never notify
+    if (isOwnerName(payload.name)) return; // locked owner name - never notify
     if (!WORKER_URL || WORKER_URL.indexOf("YOUR-WORKER-NAME") !== -1) {
       console.warn("auth-gate.js: WORKER_URL not configured yet.");
       return;
