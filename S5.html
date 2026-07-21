@@ -8,7 +8,7 @@
         :root { --bg-color: #f4f7f6; --text-color: #333; --card-bg: #ffffff; --header-bg: #0056b3; --header-text: #ffffff; --sidebar-bg: #e9ecef; --border-color: #ddd; --accent-color: #007bff; }
         [data-theme="dark"] { --bg-color: #121212; --text-color: #e0e0e0; --card-bg: #1e1e1e; --header-bg: #1f1f1f; --header-text: #bb86fc; --sidebar-bg: #2c2c2c; --border-color: #444; --accent-color: #bb86fc; }
         * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; transition: 0.3s; overflow-x: hidden; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; transition: 0.3s; }
         header { background-color: var(--header-bg); color: var(--header-text); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
         .header-controls { display: flex; gap: 15px; align-items: center; }
         #searchInput { padding: 8px 12px; border: none; border-radius: 20px; outline: none; width: 250px; }
@@ -41,7 +41,25 @@
         @media (max-width: 768px) {
             header { display: none; }
             .container { flex-direction: column; padding: 8px; gap: 0; margin: 0; max-width: 100%; }
-            aside { position: sticky; top: 0; z-index: 1000; width: 100%; max-width: 100%; height: auto; padding: 10px 10px; margin: -8px -8px 10px -8px; border-radius: 0 0 16px 16px; border: none; background-color: var(--card-bg); box-shadow: 0 4px 14px rgba(0,0,0,0.15); }
+            
+            /* यहाँ aside को फिक्स किया गया है */
+            aside { 
+                position: fixed; 
+                top: 0; 
+                left: 0;
+                right: 0;
+                z-index: 1000; 
+                width: 100%; 
+                max-width: 100%; 
+                height: auto; 
+                padding: 10px; 
+                margin: 0; 
+                border-radius: 0 0 16px 16px; 
+                border: none; 
+                background-color: var(--card-bg); 
+                box-shadow: 0 4px 14px rgba(0,0,0,0.15); 
+            }
+            
             aside h3 { display: none; }
             aside ul { display: flex; flex-wrap: nowrap; overflow-x: auto; gap: 8px; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
             aside ul::-webkit-scrollbar { display: none; }
@@ -51,8 +69,21 @@
             aside ul li a:active .qnum { transform: scale(0.88); }
             aside ul li a.active .qnum { width: 28px; height: 28px; font-size: 12px; color: #fff; border: none; animation: pulseGlow 1.8s ease-in-out infinite; }
             .qtitle { display: none; }
-            main { width: 100%; }
-            .question-card { padding: 14px; margin-bottom: 12px; border-radius: 6px; scroll-margin-top: 60px; }
+            
+            /* यहाँ main में ऊपर से जगह दी गई है */
+            main { 
+                width: 100%; 
+                margin-top: 65px; 
+            }
+            
+            /* यहाँ स्क्रॉल मार्जिन को 80px किया गया है */
+            .question-card { 
+                padding: 14px; 
+                margin-bottom: 12px; 
+                border-radius: 6px; 
+                scroll-margin-top: 80px; 
+            }
+            
             .question-card h2 { font-size: 1.05rem; margin-bottom: 10px; padding-bottom: 8px; }
             .question-card h3 { font-size: 1rem; margin-top: 12px; margin-bottom: 6px; }
             .question-card ul { margin-left: 16px; margin-bottom: 10px; }
