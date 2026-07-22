@@ -70,6 +70,7 @@
             <input type="text" id="searchInput" placeholder="🔍 Search questions...">
             <button id="indexToggle" title="Question Index">📑</button>
             <button id="themeToggle" title="Dark/Light Mode">🌙</button>
+            <button id="readAloudBtn" title="Poora Page Suno">🔊</button>
         </div>
     </header>
 
@@ -975,7 +976,77 @@
                 card.classList.toggle('hidden', !text.includes(query));
             });
         });
+        
     </script>
+    
+<script>
+(function() {
+    const btn = document.getElementById('readAloudBtn');
+    if (!btn) return;
+    let isSpeaking = false;
+    let utterances = [];
+    let currentIndex = 0;
+ 
+    function getReadableText() {
+        const cards = document.querySelectorAll('.question-card:not(.hidden)');
+        let parts = [];
+        cards.forEach(card => {
+            const text = card.innerText.replace(/\s+/g, ' ').trim();
+            if (text) parts.push(text);
+        });
+        return parts;
+    }
+ 
+    function speakNext() {
+        if (currentIndex >= utterances.length) {
+            stopReading();
+            return;
+        }
+        const u = utterances[currentIndex];
+        window.speechSynthesis.speak(u);
+    }
+ 
+    function startReading() {
+        window.speechSynthesis.cancel();
+        const parts = getReadableText();
+        if (parts.length === 0) return;
+        utterances = parts.map(text => {
+            const u = new SpeechSynthesisUtterance(text);
+            u.lang = 'hi-IN';
+            u.rate = 0.95;
+            u.onend = () => {
+                currentIndex++;
+                if (isSpeaking) speakNext();
+            };
+            return u;
+        });
+        currentIndex = 0;
+        isSpeaking = true;
+        btn.textContent = '⏹️';
+        btn.title = 'Rokein';
+        speakNext();
+    }
+ 
+    function stopReading() {
+        window.speechSynthesis.cancel();
+        isSpeaking = false;
+        currentIndex = 0;
+        btn.textContent = '🔊';
+        btn.title = 'Poora Page Suno';
+    }
+ 
+    btn.addEventListener('click', () => {
+        if (isSpeaking) {
+            stopReading();
+        } else {
+            startReading();
+        }
+    });
+ 
+    // Agar user page se hat jaye (tab close/switch) to awaaz band ho jaye
+    window.addEventListener('beforeunload', () => window.speechSynthesis.cancel());
+})();
+</script>
     <script src="auth-gate.js"></script>
 </body>
 </html>
